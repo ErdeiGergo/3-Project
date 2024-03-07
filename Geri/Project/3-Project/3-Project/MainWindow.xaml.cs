@@ -25,14 +25,14 @@ namespace _3_Project
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void HarcAblakMegnyitasa(object sender, RoutedEventArgs e)
         {
             Harc harc = new Harc();
             harc.Show();
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Close(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

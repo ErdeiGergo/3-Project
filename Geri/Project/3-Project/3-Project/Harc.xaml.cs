@@ -24,10 +24,15 @@ namespace _3_Project
             InitializeComponent();
         }
 
-        private void back_Click(object sender, RoutedEventArgs e)
+        private void Back(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
             main.Show();
+            this.Close();
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

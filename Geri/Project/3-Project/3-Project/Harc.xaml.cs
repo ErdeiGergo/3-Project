@@ -21,31 +21,62 @@ namespace _3_Project
     /// </summary>
     public partial class Harc : Window
     {
+
+        int PlayerCurrentHp;
+        int EnemyCurrentHp;
         public Harc()
         {
             InitializeComponent();
             Kezdes();
+
+
         }
 
         private void Kezdes()
         {
             string _nev = "Bela";
-
-
-            Image _kep = new Image();
-            Assembly asm = Assembly.GetExecutingAssembly();
-            Stream iconStream = asm.GetManifestResourceStream("Kepek/test.jpg");
-            PngBitmapDecoder iconDecoder = new PngBitmapDecoder(iconStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-            ImageSource iconSource = iconDecoder.Frames[0];
-            _kep.Source = iconSource;
-
+            string _forras = @"C:\Users\erdei.gergo.janos\source\repos\3-Project\Geri\Project\3-Project\3-Project\kepek\test.jpg";
             int _maxHp = 150;
             int _ero = 10;
             int _szerencse = 2;
             int _gyorsasag = 6;
-            Karakter teszt = new Karakter(_nev, _kep, _maxHp, _ero, _szerencse, _gyorsasag);
+            Karakter teszt = new Karakter(_nev, _forras, _maxHp, _ero, _szerencse, _gyorsasag);
 
-            PlayerKep = teszt.Kep;
+            BitmapImage logo = new BitmapImage();
+            logo.BeginInit();
+            logo.UriSource = new Uri(teszt.Forras);
+            logo.EndInit();
+
+            PlayerCurrentHp = teszt.MaxHp;
+
+
+            PlayerKep.Source = logo;
+            PlayerName.Content = teszt.Nev;
+            playerPB.Maximum = teszt.MaxHp;
+            playerPB.Value = PlayerCurrentHp;
+            playerHPLabel.Content = PlayerCurrentHp;
+
+            string _Enev = "Viking";
+            string _Eforras = @"C:\Users\erdei.gergo.janos\source\repos\3-Project\Geri\Project\3-Project\3-Project\kepek\enemy.jfif";
+            int _EmaxHp = 100;
+            int _Eero = 5;
+            int _Eszerencse = 0;
+            int _Egyorsasag = 3;
+            Karakter tesztEnemy = new Karakter(_Enev, _Eforras, _EmaxHp, _Eero, _Eszerencse, _Egyorsasag);
+
+            BitmapImage enemyImg = new BitmapImage();
+            enemyImg.BeginInit();
+            enemyImg.UriSource = new Uri(tesztEnemy.Forras);
+            enemyImg.EndInit();
+
+            PlayerCurrentHp = tesztEnemy.MaxHp;
+
+
+            EnemyKep.Source = enemyImg;
+            EnemyName.Content = tesztEnemy.Nev;
+            enemyPB.Maximum = tesztEnemy.MaxHp;
+            enemyPB.Value = PlayerCurrentHp;
+            enemyHPLabel.Content = PlayerCurrentHp;
         }
 
         private void Back(object sender, RoutedEventArgs e)
@@ -53,6 +84,7 @@ namespace _3_Project
             MainWindow main = new MainWindow();
             main.Show();
             this.Close();
+            
         }
 
         private void Close(object sender, RoutedEventArgs e)

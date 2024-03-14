@@ -41,7 +41,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="PlayerKep"/>
+            <Image Grid.Column="1" x:Name="EnemyKep" Width="300px" Height="200px"/>
+            <Canvas x:Name="PlayerKep" Width="300px" Height="200px" />
         </Grid>
 
         <Grid Grid.Row="2">

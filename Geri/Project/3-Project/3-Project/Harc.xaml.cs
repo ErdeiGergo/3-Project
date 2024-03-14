@@ -22,61 +22,67 @@ namespace _3_Project
     public partial class Harc : Window
     {
 
-        int PlayerCurrentHp;
+		int PlayerCurrentHp;
         int EnemyCurrentHp;
-        public Harc()
+
+
+
+		public Harc()
         {
             InitializeComponent();
-            Kezdes();
+            Start();
+		}
 
-
-        }
-
-        private void Kezdes()
+		private void Start()
         {
-            string _nev = "Bela";
-            string _forras = @"C:\Users\erdei.gergo.janos\source\repos\3-Project\Geri\Project\3-Project\3-Project\kepek\test.jpg";
+            string _name = "Szebasztian";
+            string _source = @"D:\Suli\Project\Geri\Project\3-Project\3-Project\kepek\test.jpg";
             int _maxHp = 150;
-            int _ero = 10;
-            int _szerencse = 2;
-            int _gyorsasag = 6;
-            Karakter teszt = new Karakter(_nev, _forras, _maxHp, _ero, _szerencse, _gyorsasag);
+            int _strength = 10;
+            int _luck = 2;
+            int _agility = 6;
+			Character test = new Character(_name, _source, _maxHp, _strength, _luck, _agility);
 
-            BitmapImage logo = new BitmapImage();
-            logo.BeginInit();
-            logo.UriSource = new Uri(teszt.Forras);
-            logo.EndInit();
+            BitmapImage PlayerImage = new BitmapImage();
+            PlayerImage.BeginInit();
+            PlayerImage.UriSource = new Uri(test.Source);
+            PlayerImage.EndInit();
 
-            PlayerCurrentHp = teszt.MaxHp;
+            PlayerCurrentHp = test.MaxHp;
 
 
-            PlayerKep.Source = logo;
-            PlayerName.Content = teszt.Nev;
-            playerPB.Maximum = teszt.MaxHp;
+            PlayerKep.Source = PlayerImage;
+            PlayerName.Content = test.Name;
+            playerPB.Maximum = test.MaxHp;
             playerPB.Value = PlayerCurrentHp;
             playerHPLabel.Content = PlayerCurrentHp;
 
-            string _Enev = "Viking";
-            string _Eforras = @"C:\Users\erdei.gergo.janos\source\repos\3-Project\Geri\Project\3-Project\3-Project\kepek\enemy.jfif";
-            int _EmaxHp = 100;
-            int _Eero = 5;
-            int _Eszerencse = 0;
-            int _Egyorsasag = 3;
-            Karakter tesztEnemy = new Karakter(_Enev, _Eforras, _EmaxHp, _Eero, _Eszerencse, _Egyorsasag);
+            string _enemyName = "Viking";
+            string _enemySource = @"D:\Suli\Project\Geri\Project\3-Project\3-Project\kepek\enemy.jfif";
+            int _enemyMaxHp = 100;
+            int _enemyStrength = 5;
+            int _enemyLuck = 0;
+            int _enemyAgility = 3;
+            Character testEnemy = new Character(_enemyName, _enemySource, _enemyMaxHp, _enemyStrength, _enemyLuck, _enemyAgility);
 
-            BitmapImage enemyImg = new BitmapImage();
-            enemyImg.BeginInit();
-            enemyImg.UriSource = new Uri(tesztEnemy.Forras);
-            enemyImg.EndInit();
+            BitmapImage EnemyImage = new BitmapImage();
+            EnemyImage.BeginInit();
+            EnemyImage.UriSource = new Uri(testEnemy.Source);
+            EnemyImage.EndInit();
 
-            PlayerCurrentHp = tesztEnemy.MaxHp;
+            PlayerCurrentHp = testEnemy.MaxHp;
 
 
-            EnemyKep.Source = enemyImg;
-            EnemyName.Content = tesztEnemy.Nev;
-            enemyPB.Maximum = tesztEnemy.MaxHp;
+            EnemyKep.Source = EnemyImage;
+            EnemyName.Content = testEnemy.Name;
+            enemyPB.Maximum = testEnemy.MaxHp;
             enemyPB.Value = PlayerCurrentHp;
             enemyHPLabel.Content = PlayerCurrentHp;
+        }
+
+        private void Attack()
+        {
+
         }
 
         private void Back(object sender, RoutedEventArgs e)

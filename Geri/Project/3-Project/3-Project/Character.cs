@@ -12,15 +12,17 @@ namespace _3_Project
         public string Name { get; set; }
         public string Source { get; set; }
         public int MaxHp { get; set; }
+        public int CurrentHp { get; set; }
         public int Strength { get; set; }
         public int Luck { get; set; }
         public int Agility { get; set; }
 
-        public Character(string name, string sourve, int maxHp, int strength, int luck, int agility)
+        public Character(string name, string sourve, int maxHp, int currentHp, int strength, int luck, int agility)
         {
             Name = name;
             Source = sourve;
             MaxHp = maxHp;
+            CurrentHp = currentHp;
             Strength = strength;
             Luck = luck;
             Agility = agility;

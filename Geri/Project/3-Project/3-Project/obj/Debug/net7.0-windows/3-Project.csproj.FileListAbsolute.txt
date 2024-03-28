@@ -141,3 +141,4 @@ D:\Suli\Project\Geri\Project\3-Project\3-Project\obj\Debug\net7.0-windows\refint
 D:\Suli\Project\Geri\Project\3-Project\3-Project\obj\Debug\net7.0-windows\3-Project.pdb
 D:\Suli\Project\Geri\Project\3-Project\3-Project\obj\Debug\net7.0-windows\3-Project.genruntimeconfig.cache
 D:\Suli\Project\Geri\Project\3-Project\3-Project\obj\Debug\net7.0-windows\ref\3-Project.dll
+D:\Suli\Project\Geri\Project\3-Project\3-Project\bin\Debug\net7.0-windows\kepek\test.jpg

@@ -10,7 +10,7 @@
     <Compile Update="Harc.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Tamadasok.xaml.cs">
+    <Compile Update="TamadasTipusok.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -21,7 +21,7 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Tamadasok.xaml">
+    <Page Update="TamadasTipusok.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -11,10 +11,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup.Localizer;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Threading;
 
 namespace _3_Project
 {
@@ -25,9 +27,10 @@ namespace _3_Project
     {
         string path = "D:\\Suli\\Project\\Geri\\Project\\3-Project\\3-Project\\kepek\\";
 
-		int left = 0; // this is the left int variable with the value 0
+        //Timer
+		int left = 0;
         int right = 0;
-		int playerSpeed = 50; // this integer called speed will determine how fast the blue circle will go
+		int playerSpeed = 50;
         int enemySpeed = 50;
 
 
@@ -35,7 +38,11 @@ namespace _3_Project
         {
             InitializeComponent();
             Start();
+            Wait();
 		}
+
+        Character test;
+        Character testEnemy;
 
 		private void Start()
         {
@@ -46,7 +53,7 @@ namespace _3_Project
             int _strength = 10;
             int _luck = 2;
             int _agility = 6;
-			Character test = new Character(_name, _source, _maxHp, _currentHp, _strength, _luck, _agility);
+			test = new (_name, _source, _maxHp, _currentHp, _strength, _luck, _agility);
 
             BitmapImage PlayerImage = new BitmapImage();
             PlayerImage.BeginInit();
@@ -66,7 +73,7 @@ namespace _3_Project
             int _enemyStrength = 5;
             int _enemyLuck = 0;
             int _enemyAgility = 3;
-            Character testEnemy = new Character(_enemyName, _enemySource, _enemyMaxHp, _enemyCurrentHp, _enemyStrength, _enemyLuck, _enemyAgility);
+            testEnemy = new Character(_enemyName, _enemySource, _enemyMaxHp, _enemyCurrentHp, _enemyStrength, _enemyLuck, _enemyAgility);
 
             BitmapImage EnemyImage = new BitmapImage();
             EnemyImage.BeginInit();
@@ -78,16 +85,16 @@ namespace _3_Project
             enemyPB.Maximum = testEnemy.MaxHp;
             enemyPB.Value = testEnemy.CurrentHp;
             enemyHPLabel.Content = testEnemy.CurrentHp;
-
-
-			var timer = new DispatcherTimer(); // creating a new timer
-			timer.Interval = TimeSpan.FromMilliseconds(10); // this timer will trigger every 10 milliseconds
-			timer.Start(); // starting the timer
-			timer.Tick += _timer_Tick; // with each tick it will trigger this function
-
-
         }
 
+        private void Hit()
+        {
+			var timer = new DispatcherTimer();
+			timer.Interval = TimeSpan.FromMilliseconds(10); 
+			timer.Start();
+			timer.Tick += _timer_Tick;
+            Damage(test, testEnemy);
+		}
 
 		private void _timer_Tick(object? sender, EventArgs e)
 		{
@@ -103,25 +110,30 @@ namespace _3_Project
                 enemySpeed = -10;
             if (right <= 30)
                 enemySpeed = 0;
+
 		}
 
-
-
-		
-
-		private void Attack(Character p, Character e)
+        public async void Wait()
         {
-            e.CurrentHp -= p.Strength;
-			p.CurrentHp -= e.Strength;
+			TamadasTipusok tamadasTipusok = new TamadasTipusok();
+			tamadasTipusok.Show();
+			await Task.Delay(TimeSpan.FromSeconds(10));
+            Hit();
 		}
-		private void Refresh(Character p, Character e)
+
+		private void Damage(Character player, Character bot)
         {
-			playerPB.Value = p.CurrentHp;
-			playerHPLabel.Content = p.CurrentHp;
+            bot.CurrentHp -= player.Strength;
+			player.CurrentHp -= bot.Strength;
+            Refresh(player, bot);
+		}
+		private void Refresh(Character player, Character bot)
+        {
+			playerPB.Value = player.CurrentHp;
+			playerHPLabel.Content = player.CurrentHp;
 
-			enemyPB.Value = e.CurrentHp;
-			enemyHPLabel.Content = e.CurrentHp;
-
+			enemyPB.Value = bot.CurrentHp;
+			enemyHPLabel.Content = bot.CurrentHp;
 		}
 
 		private void Back(object sender, RoutedEventArgs e)

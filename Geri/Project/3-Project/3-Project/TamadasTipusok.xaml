@@ -1,0 +1,29 @@
+﻿<Window x:Class="_3_Project.TamadasTipusok"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3_Project"
+        mc:Ignorable="d"
+		WindowStartupLocation="CenterScreen"
+		WindowStyle="None"
+		Topmost="True"
+        Title="TamadasTipusok" Height="400" Width="750">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Label Content="Válassz egy támadási tipust!" FontSize="40" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
+
+		<Button Content="Gyors" FontSize="20" Grid.Row="1" Width="200" Height="70" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" Click="Button_Click"/>
+		<Button Content="Normál" FontSize="20" Grid.Row="1" Width="200" Height="70" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Button_Click_1"/>
+		<Button Content="Erős" FontSize="20" Grid.Row="1" Width="200" Height="70" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20" Click="Button_Click_2"/>
+
+		<StackPanel Grid.Row="2" VerticalAlignment="Bottom">
+			<Label x:Name="tamadasLeirasaLabel" VerticalAlignment="Top" FontSize="15"/>
+			<ProgressBar x:Name="pbTime" Height="10" Foreground="Aqua"/>
+		</StackPanel>
+	</Grid>
+</Window>

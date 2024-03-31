@@ -35,7 +35,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch">
-                <Button Content="Karakter generálás" FontSize="20" Height="60"/>
+                <Button Content="Karakter generálás" FontSize="20" Height="60" Click="KarakterGeneralas"/>
             </StackPanel>
 
             <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch">

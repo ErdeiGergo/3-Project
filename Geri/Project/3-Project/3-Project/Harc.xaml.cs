@@ -25,7 +25,7 @@ namespace _3_Project
     /// </summary>
     public partial class Harc : Window
     {
-        string path = "D:\\Suli\\Project\\Geri\\Project\\3-Project\\3-Project\\kepek\\";
+        string path = "kepek";
 
         //Timer
 		int left = 0;
@@ -57,7 +57,7 @@ namespace _3_Project
 
             BitmapImage PlayerImage = new BitmapImage();
             PlayerImage.BeginInit();
-            PlayerImage.UriSource = new Uri(test.Source);
+            PlayerImage.UriSource = new Uri(test.Source, UriKind.Relative);
             PlayerImage.EndInit();
 
             PlayerKep.Source = PlayerImage;
@@ -77,7 +77,7 @@ namespace _3_Project
 
             BitmapImage EnemyImage = new BitmapImage();
             EnemyImage.BeginInit();
-            EnemyImage.UriSource = new Uri(testEnemy.Source);
+            EnemyImage.UriSource = new Uri(testEnemy.Source, UriKind.Relative);
             EnemyImage.EndInit();
 
             EnemyKep.Source = EnemyImage;

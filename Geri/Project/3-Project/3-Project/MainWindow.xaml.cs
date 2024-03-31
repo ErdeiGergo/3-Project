@@ -32,6 +32,13 @@ namespace _3_Project
             this.Close();
         }
 
+        private void KarakterGeneralas(object sender, RoutedEventArgs e)
+        {
+            KarakterGen generator = new KarakterGen();
+            generator.Show();
+            this.Close();
+        }
+
         private void Close(object sender, RoutedEventArgs e)
         {
             this.Close();

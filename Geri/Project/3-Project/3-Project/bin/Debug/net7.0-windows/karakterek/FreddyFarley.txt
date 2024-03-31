@@ -1,0 +1,6 @@
+Name: FreddyFarley
+Kaszt: warrior
+Race: human
+Strength: 3
+Luck: 3
+Agility: 3

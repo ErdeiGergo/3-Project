@@ -1,0 +1,6 @@
+Name: asdasda
+Kaszt: mage
+Race: elf
+Strength: 4
+Luck: 5
+Agility: 6

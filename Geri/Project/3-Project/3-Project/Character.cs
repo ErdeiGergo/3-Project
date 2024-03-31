@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Markup;
 
 namespace _3_Project
 {
@@ -17,6 +18,20 @@ namespace _3_Project
         public int Luck { get; set; }
         public int Agility { get; set; }
 
+        public string Kaszt { get; set; }
+        
+        public string Race { get; set; }
+
+        public Character(string name, string kaszt, string race, int strength, int luck, int agility) {
+            Name = name;
+            Kaszt = kaszt;
+            Race = race;
+            Strength = strength;
+            Luck = luck;
+            Agility = agility;
+            Source = "";
+        }
+
         public Character(string name, string source, int maxHp, int currentHp, int strength, int luck, int agility)
         {
             Name = name;
@@ -26,6 +41,8 @@ namespace _3_Project
             Strength = strength;
             Luck = luck;
             Agility = agility;
+            Kaszt = "warrior";
+            Race = "human";
         }
     }
 }

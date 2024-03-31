@@ -1,0 +1,6 @@
+Name: Antony Mckee
+Kaszt: hunter
+Race: elf
+Strength: 4
+Luck: 1
+Agility: 8

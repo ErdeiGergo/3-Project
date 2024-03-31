@@ -10,12 +10,18 @@
     <Compile Update="Harc.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="KarakterGen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TamadasTipusok.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Harc.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="KarakterGen.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

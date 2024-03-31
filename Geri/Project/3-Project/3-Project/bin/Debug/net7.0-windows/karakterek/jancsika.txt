@@ -1,0 +1,6 @@
+Name: jancsika
+Kaszt: mage
+Race: elf
+Strength: 5
+Luck: 5
+Agility: 5

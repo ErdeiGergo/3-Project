@@ -20,133 +20,159 @@ using System.Threading;
 
 namespace _3_Project
 {
-    /// <summary>
-    /// Interaction logic for Harc.xaml
-    /// </summary>
-    public partial class Harc : Window
-    {
-        string path = "kepek";
+	/// <summary>
+	/// Interaction logic for Harc.xaml
+	/// </summary>
+	public partial class Harc : Window
+	{
+		string path = "D:\\Suli\\Project\\new\\Geri\\Project\\3-Project\\3-Project\\kepek\\";
 
-        //Timer
+		Character player;
+		Character enemy;
+
+		int rounds = 1;
+
 		int left = 0;
-        int right = 0;
-		int playerSpeed = 50;
-        int enemySpeed = 50;
+		int right = 0;
+		int playerSpeed = 60;
+		int enemySpeed = 60;
+		int roundSpeed = 14;
 
 
 		public Harc()
-        {
-            InitializeComponent();
-            Start();
-            Wait();
+		{
+			InitializeComponent();
+			Start();
+			Round();
 		}
 
-        Character test;
-        Character testEnemy;
-
 		private void Start()
-        {
-            string _name = "Szebasztian";
-            string _source = path + "test.jpg";
-            int _maxHp = 150;
-            int _currentHp = _maxHp;
-            int _strength = 10;
-            int _luck = 2;
-            int _agility = 6;
-			test = new (_name, _source, _maxHp, _currentHp, _strength, _luck, _agility);
+		{
+			string _name = "Szebasztian";
+			string _source = path + "test.jpg";
+			int _maxHp = 150;
+			int _currentHp = _maxHp;
+			int _strength = 30;
+			int _luck = 2;
+			int _agility = 6;
+			player = new(_name, _source, _maxHp, _currentHp, _strength, _luck, _agility);
 
-            BitmapImage PlayerImage = new BitmapImage();
-            PlayerImage.BeginInit();
-            PlayerImage.UriSource = new Uri(test.Source, UriKind.Relative);
-            PlayerImage.EndInit();
+			BitmapImage PlayerImage = new BitmapImage();
+			PlayerImage.BeginInit();
+			PlayerImage.UriSource = new Uri(player.Source);
+			PlayerImage.EndInit();
 
-            PlayerKep.Source = PlayerImage;
-            PlayerName.Content = test.Name;
-            playerPB.Maximum = test.MaxHp;
-            playerPB.Value = test.CurrentHp;
-            playerHPLabel.Content = test.CurrentHp;
+			PlayerKep.Source = PlayerImage;
+			PlayerName.Content = player.Name;
+			playerPB.Maximum = player.MaxHp;
+			playerPB.Value = player.CurrentHp;
+			playerHPLabel.Content = player.CurrentHp;
 
-            string _enemyName = "Viking";
-            string _enemySource = path + "enemy.jfif";
-            int _enemyMaxHp = 100;
-            int _enemyCurrentHp = _enemyMaxHp;
-            int _enemyStrength = 5;
-            int _enemyLuck = 0;
-            int _enemyAgility = 3;
-            testEnemy = new Character(_enemyName, _enemySource, _enemyMaxHp, _enemyCurrentHp, _enemyStrength, _enemyLuck, _enemyAgility);
+			string _enemyName = "Viking";
+			string _enemySource = path + "enemy.jfif";
+			int _enemyMaxHp = 100;
+			int _enemyCurrentHp = _enemyMaxHp;
+			int _enemyStrength = 5;
+			int _enemyLuck = 0;
+			int _enemyAgility = 3;
+			enemy = new Character(_enemyName, _enemySource, _enemyMaxHp, _enemyCurrentHp, _enemyStrength, _enemyLuck, _enemyAgility);
 
-            BitmapImage EnemyImage = new BitmapImage();
-            EnemyImage.BeginInit();
-            EnemyImage.UriSource = new Uri(testEnemy.Source, UriKind.Relative);
-            EnemyImage.EndInit();
+			BitmapImage EnemyImage = new BitmapImage();
+			EnemyImage.BeginInit();
+			EnemyImage.UriSource = new Uri(enemy.Source);
+			EnemyImage.EndInit();
 
-            EnemyKep.Source = EnemyImage;
-            EnemyName.Content = testEnemy.Name;
-            enemyPB.Maximum = testEnemy.MaxHp;
-            enemyPB.Value = testEnemy.CurrentHp;
-            enemyHPLabel.Content = testEnemy.CurrentHp;
-        }
+			EnemyKep.Source = EnemyImage;
+			EnemyName.Content = enemy.Name;
+			enemyPB.Maximum = enemy.MaxHp;
+			enemyPB.Value = enemy.CurrentHp;
+			enemyHPLabel.Content = enemy.CurrentHp;
+		}
 
-        private void Hit()
-        {
+		private async void Round()
+		{
+			RoundCounter();
+			await Fight();
+			while (player.CurrentHp > 0 && enemy.CurrentHp > 0)
+			{
+				RoundCounter();
+				await Task.Delay(TimeSpan.FromSeconds(2));
+				await Fight();
+				rounds++;
+			}
+		}
+
+		private async Task Fight()
+		{
+			TamadasTipusok tamadasTipusok = new TamadasTipusok();
+			tamadasTipusok.Show();
+			await Task.Delay(TimeSpan.FromSeconds(8));
+			Hit();
+		}
+		private void Hit()
+		{
+			left = 0;
+			right = 0;
+			playerSpeed = 50;
+			enemySpeed = 50;
+
 			var timer = new DispatcherTimer();
-			timer.Interval = TimeSpan.FromMilliseconds(10); 
+			timer.Interval = TimeSpan.FromMilliseconds(10);
 			timer.Start();
 			timer.Tick += _timer_Tick;
-            Damage(test, testEnemy);
+
+			Damage(player, enemy);
 		}
 
 		private void _timer_Tick(object? sender, EventArgs e)
 		{
 			left += playerSpeed;
-            right += enemySpeed;
+			right += enemySpeed;
 			PlayerKep.Margin = new Thickness(left, 0, 0, 0);
-            EnemyKep.Margin = new Thickness(0, 0, right, 0);
+			EnemyKep.Margin = new Thickness(0, 0, right, 0);
 			if (left > 750)
 				playerSpeed = -10;
 			if (left <= 30)
-                playerSpeed = 0;
-            if (right > 750)
-                enemySpeed = -10;
-            if (right <= 30)
-                enemySpeed = 0;
-
-		}
-
-        public async void Wait()
-        {
-			TamadasTipusok tamadasTipusok = new TamadasTipusok();
-			tamadasTipusok.Show();
-			await Task.Delay(TimeSpan.FromSeconds(10));
-            Hit();
+				playerSpeed = 0;
+			if (right > 750)
+				enemySpeed = -10;
+			if (right <= 30)
+				enemySpeed = 0;
 		}
 
 		private void Damage(Character player, Character bot)
-        {
-            bot.CurrentHp -= player.Strength;
+		{
+			bot.CurrentHp -= player.Strength;
 			player.CurrentHp -= bot.Strength;
-            Refresh(player, bot);
+			Refresh(player, bot);
 		}
+
 		private void Refresh(Character player, Character bot)
-        {
+		{
 			playerPB.Value = player.CurrentHp;
 			playerHPLabel.Content = player.CurrentHp;
 
 			enemyPB.Value = bot.CurrentHp;
 			enemyHPLabel.Content = bot.CurrentHp;
+
+
+		}
+
+		private void RoundCounter()
+		{
+			roundsLabel.Content = rounds;
 		}
 
 		private void Back(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
-            
-        }
+		{
+			MainWindow main = new MainWindow();
+			main.Show();
+			this.Close();
+		}
 
-        private void Close(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-    }
+		private void Close(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
+	}
 }

@@ -24,18 +24,17 @@
 
             <StackPanel>
                 <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Content="←" Click="Back"/>
-                <Label x:Name="PlayerName"  Content="Player" HorizontalAlignment="Center" FontSize="25"/>
+                <Label x:Name="PlayerName" HorizontalAlignment="Center" FontSize="25"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <Label HorizontalAlignment="Center" Content="Enemy's turn" FontSize="25"/>
+                <Label HorizontalAlignment="Center" FontSize="25"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2">
                 <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="30" Content="X" Click="Close"/>
-                <Label x:Name="EnemyName" Content="Enemy" HorizontalAlignment="Center" FontSize="25"/>
+                <Label x:Name="EnemyName" HorizontalAlignment="Center" FontSize="25"/>
             </StackPanel>
-            
         </Grid>
 
         <Grid Grid.Row="1">
@@ -67,16 +66,16 @@
             </StackPanel>
 
             <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                <Label Name="playerHPLabel" Content="100" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" />
+                <Label Name="playerHPLabel" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25"/>
             </StackPanel>
 
             <StackPanel Grid.Column="3">
                 <Label Content="Round:" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold"/>
-                <Label Content="3" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                <Label x:Name="roundsLabel" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
             </StackPanel>
 
             <StackPanel Grid.Column="4" VerticalAlignment="Center">
-                <Label Name="enemyHPLabel" HorizontalAlignment="Center" Content="100" FontWeight="Bold" FontSize="25"/>
+                <Label Name="enemyHPLabel" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25"/>
             </StackPanel>
 
             <StackPanel Grid.Column="5" VerticalAlignment="Center">

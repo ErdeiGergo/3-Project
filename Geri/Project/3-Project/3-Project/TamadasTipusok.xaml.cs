@@ -26,6 +26,7 @@ namespace _3_Project
 		{
 			InitializeComponent();
 			Wait();
+			WaitingBar();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -48,7 +49,7 @@ namespace _3_Project
 
 		private async void Wait()
 		{
-			await Task.Delay(TimeSpan.FromSeconds(10));
+			await Task.Delay(TimeSpan.FromSeconds(8));
 			this.Close();
 		}
 
@@ -67,5 +68,19 @@ namespace _3_Project
 					break;
 			}
 		}
+
+		private void WaitingBar()
+		{
+			var timer = new DispatcherTimer();
+			timer.Interval = TimeSpan.FromMilliseconds(10);
+			timer.Start();
+			timer.Tick += _timer_Tick;
+		}
+
+		private void _timer_Tick(object? sender, EventArgs e)
+		{
+			pbTime.Value -= 20;
+		}
+
 	}
 }

@@ -1,0 +1,6 @@
+Name: ASDdsa
+Kaszt: warrior
+Race: gnome
+Strength: 5
+Luck: 2
+Agility: 2

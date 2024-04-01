@@ -1,0 +1,6 @@
+Name: Please enter your name here...
+Kaszt: hunter
+Race: human
+Strength: 0
+Luck: 0
+Agility: 15

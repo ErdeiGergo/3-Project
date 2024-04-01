@@ -1,0 +1,6 @@
+Name: ConnieLandry
+Kaszt: mage
+Race: elf
+Strength: 5
+Luck: 10
+Agility: 0

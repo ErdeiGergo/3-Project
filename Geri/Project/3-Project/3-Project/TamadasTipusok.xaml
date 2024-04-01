@@ -9,7 +9,7 @@
 		WindowStyle="None"
 		Topmost="True"
         Title="TamadasTipusok" Height="400" Width="750">
-    <Grid>
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
 			<RowDefinition/>
@@ -23,7 +23,7 @@
 
 		<StackPanel Grid.Row="2" VerticalAlignment="Bottom">
 			<Label x:Name="tamadasLeirasaLabel" VerticalAlignment="Top" FontSize="15"/>
-			<ProgressBar x:Name="pbTime" Height="10" Foreground="Aqua"/>
+			<ProgressBar x:Name="pbTime" Height="10" Foreground="SteelBlue" Maximum="10000" Value="10000"/>
 		</StackPanel>
 	</Grid>
 </Window>

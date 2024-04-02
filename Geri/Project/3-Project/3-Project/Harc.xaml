@@ -28,7 +28,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <Label HorizontalAlignment="Center" FontSize="25"/>
+                <Label x:Name="ShowDamageLabel" HorizontalAlignment="Center" FontSize="50"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2">

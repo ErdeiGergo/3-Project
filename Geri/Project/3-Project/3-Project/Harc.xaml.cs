@@ -99,6 +99,13 @@ namespace _3_Project
 				await Fight();
 				rounds++;
 			}
+			ShowDamageLabel.FontSize = 50;
+			if (player.CurrentHp <= 0)
+				Win();
+			else if (enemy.CurrentHp <= 0)
+				ShowDamageLabel.Content = "You win!";
+			else if (player.CurrentHp <= 0 && enemy.CurrentHp <= 0)
+				ShowDamageLabel.Content = "Draw";
 		}
 
 		private async Task Fight()
@@ -144,6 +151,7 @@ namespace _3_Project
 		private void Damage()
 		{
 			int playerDamage;
+			int enemyDamage;
 			switch (tamadasTipusa)
 			{
 				case "gyors":
@@ -160,9 +168,19 @@ namespace _3_Project
 					break;
 			}
 			enemy.CurrentHp -= playerDamage;
+			ShowDamageLabel.FontSize = 20;
+			ShowDamageLabel.Content += $"Sebeztél: {playerDamage}\n";
 
-			player.CurrentHp -= enemy.Strength;
+			enemyDamage = enemy.Strength;
+			player.CurrentHp -= enemyDamage;
+			ShowDamageLabel.Content += $"Sebzést kaptál: {enemyDamage}\n";
+
 			Refresh();
+		}
+
+		private void Win()
+		{
+			ShowDamageLabel.Content = "You lost!";
 		}
 
 		private void Refresh()

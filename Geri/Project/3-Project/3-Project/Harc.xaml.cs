@@ -36,8 +36,8 @@ namespace _3_Project
 		int right = 0;
 		int playerSpeed = 60;
 		int enemySpeed = 60;
-		int roundSpeed = 14;
 
+		string tamadasTipusa;
 
 		public Harc()
 		{
@@ -96,7 +96,6 @@ namespace _3_Project
 			while (player.CurrentHp > 0 && enemy.CurrentHp > 0)
 			{
 				RoundCounter();
-				await Task.Delay(TimeSpan.FromSeconds(2));
 				await Fight();
 				rounds++;
 			}
@@ -104,11 +103,13 @@ namespace _3_Project
 
 		private async Task Fight()
 		{
+			await Task.Delay(TimeSpan.FromSeconds(2));
 			TamadasTipusok tamadasTipusok = new TamadasTipusok();
-			tamadasTipusok.Show();
-			await Task.Delay(TimeSpan.FromSeconds(8));
+			tamadasTipusok.ShowDialog();
+			tamadasTipusa = tamadasTipusok.tamadasTipus;
 			Hit();
 		}
+
 		private void Hit()
 		{
 			left = 0;
@@ -121,7 +122,7 @@ namespace _3_Project
 			timer.Start();
 			timer.Tick += _timer_Tick;
 
-			Damage(player, enemy);
+			Damage();
 		}
 
 		private void _timer_Tick(object? sender, EventArgs e)
@@ -140,22 +141,37 @@ namespace _3_Project
 				enemySpeed = 0;
 		}
 
-		private void Damage(Character player, Character bot)
+		private void Damage()
 		{
-			bot.CurrentHp -= player.Strength;
-			player.CurrentHp -= bot.Strength;
-			Refresh(player, bot);
+			int playerDamage;
+			switch (tamadasTipusa)
+			{
+				case "gyors":
+					playerDamage = player.Strength - 5;
+					break;
+				case "normal":
+					playerDamage = player.Strength;
+					break;
+				case "eros":
+					playerDamage = player.Strength + 5;
+					break;
+				default:
+					playerDamage = player.Strength;
+					break;
+			}
+			enemy.CurrentHp -= playerDamage;
+
+			player.CurrentHp -= enemy.Strength;
+			Refresh();
 		}
 
-		private void Refresh(Character player, Character bot)
+		private void Refresh()
 		{
 			playerPB.Value = player.CurrentHp;
 			playerHPLabel.Content = player.CurrentHp;
 
-			enemyPB.Value = bot.CurrentHp;
-			enemyHPLabel.Content = bot.CurrentHp;
-
-
+			enemyPB.Value = enemy.CurrentHp;
+			enemyHPLabel.Content = enemy.CurrentHp;
 		}
 
 		private void RoundCounter()
